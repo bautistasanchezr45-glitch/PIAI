@@ -1,10 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "api/importar.py", "use": "@vercel/python" },
-    { "src": "api/status.py", "use": "@vercel/python" }
-  ]
+  "framework": null
 }
