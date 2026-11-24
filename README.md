@@ -5,7 +5,7 @@ Primera etapa funcional: bienvenida, carga de las bases Excel y almacenamiento. 
 ## Iniciar
 
 1. Instala Python 3 si aún no está instalado.
-2. Ejecuta `iniciar.bat`.
+2. Ejecuta `iniciar.bat` (inicia `local_server.py`).
 3. Abre http://127.0.0.1:8000 en tu navegador.
 4. Entra a **Cargar archivos Excel**, selecciona `Base_Hechos.xlsx` y `Base_Reglas.xlsx`, y pulsa **Validar y guardar**.
 
