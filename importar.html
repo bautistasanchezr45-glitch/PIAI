@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f3" />
+    <title>Cargar bases Excel | Control de Calidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="importar.css" />
+    <script src="importar.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Control de Calidad, inicio">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-name">Control<span>Calidad</span></span>
+      </a>
+      <a class="return-link" href="index.html">← <span>Volver a bienvenida</span></a>
+    </header>
+
+    <main class="import-main">
+      <section class="import-heading">
+        <div class="eyebrow"><span></span> CONFIGURACIÓN INICIAL <span class="eyebrow-number">02 / CARGA DE DATOS</span></div>
+        <h1>Conecta tus bases<br />de <em>conocimiento.</em></h1>
+        <p>Selecciona los dos archivos Excel. Revisaremos su estructura y guardaremos su contenido para utilizarlo en el sistema.</p>
+      </section>
+
+      <section class="import-layout" aria-label="Carga de archivos Excel">
+        <form id="import-form" class="upload-panel">
+          <div class="upload-panel-heading"><div><span class="section-kicker">FUENTES DEL SISTEMA</span><h2>Carga tus archivos</h2></div><span class="required-mark"><i></i> Ambos requeridos</span></div>
+          <p class="upload-instructions">Elige cada archivo desde tu equipo. Aceptamos libros de Excel en formato <strong>.xlsx</strong>.</p>
+
+          <label class="file-card" for="facts-file">
+            <span class="file-symbol facts-symbol">▤</span>
+            <span class="file-copy"><strong>Base de hechos</strong><small>Registros observados y resultados esperados</small><span class="selected-file" id="facts-name">Selecciona Base_Hechos.xlsx</span></span>
+            <span class="file-browse">Examinar <span>↗</span></span>
+            <input id="facts-file" name="facts" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required />
+          </label>
+
+          <label class="file-card" for="rules-file">
+            <span class="file-symbol rules-symbol">⌘</span>
+            <span class="file-copy"><strong>Base de reglas</strong><small>Condiciones, resultados y prioridad de reglas</small><span class="selected-file" id="rules-name">Selecciona Base_Reglas.xlsx</span></span>
+            <span class="file-browse">Examinar <span>↗</span></span>
+            <input id="rules-file" name="rules" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required />
+          </label>
+
+          <div class="upload-notice"><span class="notice-icon">i</span><p>Los encabezados deben corresponder a las bases del proyecto. Si ambos archivos pasan la validación, reemplazarán juntos la carga anterior; si hay errores, la base actual se conserva.</p></div>
+          <div class="submit-row"><span class="local-note"><i></i> Los datos se guardarán en la base local</span><button class="primary-button" id="submit-button" type="submit">Validar y guardar <span aria-hidden="true">→</span></button></div>
+          <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+          <div class="database-status" id="database-status">Consultando estado de la base local…</div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
