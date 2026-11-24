@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f3" />
+    <title>Analizar proceso | Control de Calidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="analizar.css" />
+    <script src="analizar.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar analysis-topbar">
+      <a class="brand" href="index.html" aria-label="Control de Calidad, inicio">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-name">Control<span>Calidad</span></span>
+      </a>
+      <div class="analysis-nav">
+        <a href="importar.html">Bases de conocimiento</a>
+        <a class="return-link" href="index.html">Volver a bienvenida</a>
+      </div>
+    </header>
+
+    <main class="analysis-main">
+      <section class="analysis-heading">
+        <div>
+          <div class="eyebrow"><span></span> EVALUACIÓN DEL PROCESO <span class="eyebrow-number">03 / ANÁLISIS</span></div>
+          <h1>Analiza las condiciones<br />de <em>producción.</em></h1>
+          <p>Registra los cinco parámetros. El árbol del programa PSeInt calculará el riesgo y la acción recomendada.</p>
+        </div>
+        <div class="database-pill" id="database-pill"><i></i><span id="database-status">Conectando con Neon…</span></div>
+      </section>
+
+      <div class="analysis-grid">
+        <section class="analysis-card">
+          <div class="card-heading">
+            <div><span class="section-kicker">DATOS DEL PRODUCTO</span><h2>Condiciones observadas</h2></div>
+            <span class="required-mark"><i></i> 5 condiciones</span>
+          </div>
+          <form id="analysis-form" class="condition-form">
+            <label class="condition-field">
+              <span>Temperatura de proceso</span>
+              <small>¿Está dentro de especificación?</small>
+              <select name="temperature" required><option value="" selected disabled>Selecciona una opción</option><option>Correcta</option><option>Fuera de especificación</option></select>
+            </label>
+            <label class="condition-field">
+              <span>Presión del proceso</span>
+              <small>¿Es correcta?</small>
+              <select name="pressure" required><option value="" selected disabled>Selecciona una opción</option><option>Correcta</option><option>Incorrecta</option></select>
+            </label>
+            <label class="condition-field">
+              <span>Tiempo de operación</span>
+              <small>¿Es el adecuado?</small>
+              <select name="time" required><option value="" selected disabled>Selecciona una opción</option><option>Adecuado</option><option>Inadecuado</option></select>
+            </label>
+            <label class="condition-field">
+              <span>Materia prima</span>
+              <small>¿Cumple las especificaciones?</small>
+              <select name="rawMaterial" required><option value="" selected disabled>Selecciona una opción</option><option>Conforme</option><option>No conforme</option></select>
+            </label>
+            <label class="condition-field condition-field-last">
+              <span>Ajustes de máquina</span>
+              <small>¿Son correctos?</small>
+              <select name="machineSettings" required><option value="" selected disabled>Selecciona una opción</option><option>Correctos</option><option>Incorrectos</option></select>
+            </label>
+            <div class="form-actions">
+              <button class="primary-button analyze-button" id="analyze-button" type="submit" disabled>Analizar proceso <span aria-hidden="true">→</span></button>
+              <button class="reset-button" id="reset-button" type="reset">Limpiar</button>
+            </div>
+            <p class="form-error" id="form-error" role="alert"></p>
+          </form>
+        </section>
+
+        <div class="analysis-side">
+          <section class="result-card" aria-live="polite">
+            <div class="card-heading result-heading"><div><span class="section-kicker">RESULTADO ACTUAL</span><h2 id="result-title">Esperando análisis</h2></div><span class="risk-badge risk-empty" id="risk-badge">—</span></div>
+            <p class="result-action" id="result-action">Completa las condiciones y pulsa «Analizar proceso».</p>
+            <p class="result-reason" id="result-reason">La evaluación aplicará el árbol de decisión del programa PSeInt.</p>
+            <div class="reference-box" id="reference-box"><span class="section-kicker">REFERENCIA EN BASE DE HECHOS</span><p id="reference-content">El resultado mostrará si existe un caso coincidente en Neon.</p></div>
+          </section>
+
+          <section class="summary-card">
+            <div class="card-heading summary-heading"><div><span class="section-kicker">RESUMEN DE ESTA SESIÓN</span><h2><span id="analysis-count">0</span> análisis</h2></div><button class="reset-session" id="reset-session" type="button" disabled>Nueva sesión</button></div>
+            <p class="summary-note">Los conteos corresponden a esta pestaña y se reinician al recargarla.</p>
+            <div class="risk-summary" id="risk-summary"></div>
+            <div class="top-action" id="top-action">La acción más recomendada aparecerá aquí.</div>
+          </section>
+        </div>
+      </div>
+      <p class="logic-note">La referencia de Neon muestra ejemplos y reglas almacenados. Si sus resultados difieren del árbol PSeInt, se mostrarán ambos para que puedas compararlos.</p>
+    </main>
+  </body>
+</html>

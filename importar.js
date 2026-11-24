@@ -26,7 +26,7 @@ fetch("/api/status")
     }
   })
   .catch(() => {
-    document.querySelector("#database-status").textContent = "Inicia la aplicación para consultar el estado de la base.";
+    document.querySelector("#database-status").textContent = "No se pudo consultar el estado de la base conectada.";
   });
 
 uploadForm.addEventListener("submit", async (event) => {
@@ -55,11 +55,12 @@ uploadForm.addEventListener("submit", async (event) => {
       return;
     }
     feedback.className = "feedback visible success";
-    feedback.innerHTML = `<strong>¡Bases cargadas correctamente!</strong>Se guardaron ${result.facts} hechos y ${result.rules} reglas en la base de datos conectada.`;
+    feedback.innerHTML = `<strong>¡Bases cargadas correctamente!</strong>Se guardaron ${result.facts} hechos y ${result.rules} reglas en la base de datos conectada. <a href="analizar.html">Ejecutar análisis →</a>`;
     document.querySelector("#facts-name").textContent = `${facts.name} · ${result.facts} registros importados`;
     document.querySelector("#rules-name").textContent = `${rules.name} · ${result.rules} reglas importadas`;
+    document.querySelector("#database-status").textContent = `${result.facts} hechos y ${result.rules} reglas cargados en Neon.`;
   } catch (error) {
-    showError(["No se pudo conectar con el servidor local. Inicia la aplicación con iniciar.bat y vuelve a intentar."]);
+    showError(["No se pudo conectar con el servicio. Actualiza la página e inténtalo de nuevo."]);
   } finally {
     submitButton.disabled = false;
     submitButton.innerHTML = "Validar y guardar <span aria-hidden=\"true\">→</span>";

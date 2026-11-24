@@ -110,3 +110,35 @@ def get_database_status() -> dict:
         "rules": row[1],
         "importedAt": row[2].isoformat(),
     }
+
+
+def find_matching_fact(inputs: dict[str, str]) -> dict | None:
+    with connect_database() as connection:
+        count = connection.execute(
+            """SELECT COUNT(*) FROM hechos WHERE temperatura=%s AND presion=%s AND tiempo=%s
+               AND materia_prima=%s AND ajustes_maquina=%s""",
+            (inputs["temperature"], inputs["pressure"], inputs["time"], inputs["rawMaterial"], inputs["machineSettings"]),
+        ).fetchone()[0]
+        row = connection.execute(
+            """SELECT f.id_hecho, f.riesgo_esperado, f.accion_esperada, f.regla_aplicable,
+                      f.tipo_dato, r.condicion, r.resultado, r.prioridad
+               FROM hechos f LEFT JOIN reglas r ON r.id_regla=f.regla_aplicable
+               WHERE f.temperatura=%s AND f.presion=%s AND f.tiempo=%s
+                 AND f.materia_prima=%s AND f.ajustes_maquina=%s
+               ORDER BY CASE WHEN LOWER(f.tipo_dato)='real' THEN 0 ELSE 1 END, f.id_hecho
+               LIMIT 1""",
+            (inputs["temperature"], inputs["pressure"], inputs["time"], inputs["rawMaterial"], inputs["machineSettings"]),
+        ).fetchone()
+    if not row:
+        return None
+    return {
+        "examples": count,
+        "factId": row[0],
+        "risk": row[1],
+        "action": row[2],
+        "ruleId": row[3],
+        "type": row[4],
+        "condition": row[5],
+        "ruleResult": row[6],
+        "priority": row[7],
+    }
