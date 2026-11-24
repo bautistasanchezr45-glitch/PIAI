@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 import psycopg
 
 from neon_storage import import_into_database
-from local_server import parse_workbook
+from excel_parser import parse_workbook
 
 
 MAX_UPLOAD_BYTES = 4_500_000
