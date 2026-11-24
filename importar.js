@@ -18,8 +18,12 @@ describeFile("#rules-file", "#rules-name", "Selecciona Base_Reglas.xlsx");
 fetch("/api/status")
   .then((response) => response.json())
   .then((status) => {
-    if (!status.loaded) return;
-    document.querySelector("#database-status").textContent = `${status.facts} hechos y ${status.rules} reglas cargados · ${status.importedAt}`;
+    const statusLabel = document.querySelector("#database-status");
+    if (status.loaded) {
+      statusLabel.textContent = `${status.facts} hechos y ${status.rules} reglas cargados · ${status.importedAt}`;
+    } else {
+      statusLabel.textContent = status.error || "Todavía no hay bases cargadas.";
+    }
   })
   .catch(() => {
     document.querySelector("#database-status").textContent = "Inicia la aplicación para consultar el estado de la base.";
@@ -51,7 +55,7 @@ uploadForm.addEventListener("submit", async (event) => {
       return;
     }
     feedback.className = "feedback visible success";
-    feedback.innerHTML = `<strong>¡Bases cargadas correctamente!</strong>Se guardaron ${result.facts} hechos y ${result.rules} reglas en la base local <code>data/control_calidad.db</code>.`;
+    feedback.innerHTML = `<strong>¡Bases cargadas correctamente!</strong>Se guardaron ${result.facts} hechos y ${result.rules} reglas en la base de datos conectada.`;
     document.querySelector("#facts-name").textContent = `${facts.name} · ${result.facts} registros importados`;
     document.querySelector("#rules-name").textContent = `${rules.name} · ${result.rules} reglas importadas`;
   } catch (error) {
