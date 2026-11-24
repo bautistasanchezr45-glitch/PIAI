@@ -31,3 +31,11 @@ No pongas `DATABASE_URL` en el código ni la subas a GitHub. Las funciones usan 
 - Reglas: `ID_Regla`, `Condición (SI...)`, `Acción / Resultado (ENTONCES...)`, `Prioridad`.
 
 El servidor solo escucha en el equipo local (`127.0.0.1`).
+
+## Organización del proyecto
+
+- Las páginas HTML (`index.html`, `analizar.html`, `importar.html`, `base.html`, `comparar.html`) permanecen en la raíz para conservar las rutas públicas de Vercel.
+- `assets/css/` contiene los estilos de la interfaz y `assets/js/` los scripts de las páginas.
+- `api/` contiene las funciones web de Vercel; `neon_storage.py` conecta esas funciones con Neon.
+- `local_server.py` e `iniciar.bat` permiten usar la aplicación localmente; `data/control_calidad.db` es la base SQLite local.
+- `__pycache__/` es una carpeta temporal que Python crea al ejecutar el servidor y puede regenerar.
