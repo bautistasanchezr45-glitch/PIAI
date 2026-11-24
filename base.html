@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f3" />
+    <title>Consultar bases | Control de Calidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="base-extra.css" />
+    <script src="base.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar data-topbar">
+      <a class="brand" href="index.html" aria-label="Control de Calidad, inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">Control<span>Calidad</span></span></a>
+      <nav class="analysis-nav"><a href="analizar.html">Simular proceso</a><a href="comparar.html">Comparar escenarios</a><a href="importar.html">Actualizar Excel</a></nav>
+    </header>
+    <main class="data-main">
+      <section class="data-heading"><div><div class="eyebrow"><span></span> BASE DE CONOCIMIENTO <span class="eyebrow-number">HECHOS Y REGLAS</span></div><h1>Consulta lo que<br /><em>aprendió el sistema.</em></h1></div><div class="data-status" id="data-status">Consultando Neon…</div></section>
+      <section class="data-panel">
+        <div class="data-toolbar"><div class="data-tabs" role="tablist"><button class="data-tab active" type="button" data-tab="facts">Hechos <span id="fact-count">—</span></button><button class="data-tab" type="button" data-tab="rules">Reglas <span id="rule-count">—</span></button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="base-search" type="search" placeholder="Buscar por valor, riesgo, regla…" /></label></div>
+        <div class="data-caption" id="data-caption">Registros históricos de procesos y sus resultados esperados.</div>
+        <div id="facts-list" class="facts-list" aria-live="polite"></div>
+        <div id="rules-list" class="rules-list" hidden></div>
+        <div class="pagination"><span id="page-label">—</span><div><button id="page-prev" type="button" disabled>Anterior</button><button id="page-next" type="button" disabled>Siguiente</button></div></div>
+      </section>
+    </main>
+  </body>
+</html>

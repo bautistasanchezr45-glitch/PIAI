@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="analizar.css" />
+    <link rel="stylesheet" href="analizar-extra.css" />
     <script src="analizar.js" defer></script>
   </head>
   <body>
@@ -19,6 +20,8 @@
         <span class="brand-name">Control<span>Calidad</span></span>
       </a>
       <div class="analysis-nav">
+        <a href="base.html">Consultar bases</a>
+        <a href="comparar.html">Comparar escenarios</a>
         <a href="importar.html">Bases de conocimiento</a>
         <a class="return-link" href="index.html">Volver a bienvenida</a>
       </div>
@@ -41,6 +44,11 @@
             <span class="required-mark"><i></i> 5 condiciones</span>
           </div>
           <form id="analysis-form" class="condition-form">
+            <label class="architecture-field condition-field-last">
+              <span>Arquitectura del agente</span>
+              <small id="architecture-description">Decide solo con las cinco condiciones actuales.</small>
+              <select id="architecture" name="architecture"><option value="reactive">Reactivo simple · responde a la entrada</option><option value="model">Basado en modelos · conserva el estado previo</option><option value="objectives">Orientado a objetivos · elige una ruta por utilidad</option><option value="learning">Aprendizaje · incorpora resultados observados</option><option value="hybrid">Híbrido · combina PSeInt y frecuencia histórica</option></select>
+            </label>
             <label class="condition-field">
               <span>Temperatura de proceso</span>
               <small>¿Está dentro de especificación?</small>
@@ -80,6 +88,18 @@
             <p class="result-action" id="result-action">Completa las condiciones y pulsa «Analizar proceso».</p>
             <p class="result-reason" id="result-reason">La evaluación aplicará el árbol de decisión del programa PSeInt.</p>
             <div class="reference-box" id="reference-box"><span class="section-kicker">REFERENCIA EN BASE DE HECHOS</span><p id="reference-content">El resultado mostrará si existe un caso coincidente en Neon.</p></div>
+            <div class="prediction-box" id="prediction-box"><span class="section-kicker">PREDICCIÓN CUANTIFICABLE · FRECUENCIA HISTÓRICA</span><p id="prediction-content">Se calculará con los casos más parecidos de Base_Hechos.</p></div>
+            <div class="simulation-box" id="simulation-box"><span class="section-kicker">RESULTADO SIMULADO · PSEINT</span><p id="simulation-content">Aparecerá al ejecutar el escenario.</p></div>
+          </section>
+          <section class="learning-card" id="learning-panel" hidden>
+            <div class="card-heading"><div><span class="section-kicker">APRENDIZAJE CON DATOS NUEVOS</span><h2>¿Qué resultado se observó?</h2></div></div>
+            <p>Registra el riesgo y la acción reales para que el modelo los incorpore a Neon.</p>
+            <form id="learning-form" class="learning-form">
+              <label>Riesgo observado<select id="observed-risk" required><option value="Bajo">Bajo</option><option value="Medio">Medio</option><option value="Alto">Alto</option><option value="Muy alto">Muy alto</option></select></label>
+              <label>Acción observada<select id="observed-action" required><option>Continuar producción</option><option>Ajustar parámetros</option><option>Inspeccionar producto</option><option>Retener lote</option><option>Detener proceso</option></select></label>
+              <button class="primary-button" type="submit">Aprender de este caso <span aria-hidden="true">→</span></button>
+            </form>
+            <div class="learning-status" id="learning-status" role="status"></div>
           </section>
 
           <section class="summary-card">
@@ -87,7 +107,9 @@
             <p class="summary-note">Los conteos corresponden a esta pestaña y se reinician al recargarla.</p>
             <div class="risk-summary" id="risk-summary"></div>
             <div class="top-action" id="top-action">La acción más recomendada aparecerá aquí.</div>
+            <div class="moving-average" id="moving-average">Promedio móvil de riesgo (últimos 5): esperando análisis.</div>
           </section>
+          <details class="trace-card"><summary><span class="section-kicker">ESTADOS Y REGLAS</span><strong>Recorrido paso a paso</strong></summary><ol class="trace-list" id="trace-list"><li>Ejecuta un análisis para ver los cambios del entorno, las reglas y la decisión.</li></ol></details>
         </div>
       </div>
       <p class="logic-note">La referencia de Neon muestra ejemplos y reglas almacenados. Si sus resultados difieren del árbol PSeInt, se mostrarán ambos para que puedas compararlos.</p>

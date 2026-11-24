@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f3" />
+    <title>Comparar escenarios | Control de Calidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="comparar.css" />
+    <script src="comparar.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar compare-topbar">
+      <a class="brand" href="index.html" aria-label="Control de Calidad, inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">Control<span>Calidad</span></span></a>
+      <nav class="analysis-nav"><a href="analizar.html">Simular</a><a href="base.html">Consultar bases</a><a href="importar.html">Actualizar Excel</a></nav>
+    </header>
+    <main class="compare-main">
+      <section class="compare-heading"><div><div class="eyebrow"><span></span> PRUEBA POR ARQUITECTURA <span class="eyebrow-number">TRES ESCENARIOS</span></div><h1>Compara condiciones<br />y <em>resultados.</em></h1><p>Edita cada escenario. Separaremos la predicción por frecuencia, el dato histórico y la simulación PSeInt.</p></div><label class="compare-architecture"><span>Arquitectura a probar</span><select id="compare-architecture"><option value="reactive">Reactivo simple</option><option value="model">Basado en modelos</option><option value="objectives">Orientado a objetivos</option><option value="learning">Aprendizaje con datos nuevos</option><option value="hybrid">Híbrido</option></select></label></section>
+      <form id="compare-form">
+        <div class="scenario-grid">
+          <section class="scenario-card" data-scenario="a"><div class="scenario-title"><span>Escenario A</span><small>Proceso estable</small></div><div class="scenario-fields"></div></section>
+          <section class="scenario-card" data-scenario="b"><div class="scenario-title"><span>Escenario B</span><small>Temperatura fuera de rango</small></div><div class="scenario-fields"></div></section>
+          <section class="scenario-card" data-scenario="c"><div class="scenario-title"><span>Escenario C</span><small>Presión y ajustes incorrectos</small></div><div class="scenario-fields"></div></section>
+        </div>
+        <div class="compare-actions"><span id="compare-status">Se consultarán ejemplos históricos de Neon.</span><button class="primary-button" id="compare-button" type="submit">Comparar los tres <span aria-hidden="true">→</span></button></div>
+      </form>
+      <section class="compare-results" id="compare-results" aria-live="polite"><div class="empty-state">Ejecuta la comparación para ver predicción, histórico y simulación de cada escenario.</div></section>
+      <p class="compare-note">Predicción: frecuencia de los casos coincidentes o más cercanos en Base_Hechos. Simulación: resultado directo del árbol PSeInt. Dato histórico: registro real usado como referencia; no es el resultado de esta corrida.</p>
+    </main>
+  </body>
+</html>
