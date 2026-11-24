@@ -64,27 +64,28 @@ def import_into_database(facts, rules, facts_name: str, rules_name: str) -> None
         ensure_schema(connection)
         connection.execute("DELETE FROM hechos")
         connection.execute("DELETE FROM reglas")
-        connection.executemany(
-            "INSERT INTO reglas (id_regla, condicion, resultado, prioridad) VALUES (%s, %s, %s, %s)",
-            [
-                (r["id_regla"], r["condicion_si"], r["accion_resultado_entonces"], int(float(r["prioridad"])))
-                for r in rules
-            ],
-        )
-        connection.executemany(
-            """INSERT INTO hechos (
-                id_hecho, temperatura, presion, tiempo, materia_prima, ajustes_maquina,
-                regla_aplicable, riesgo_esperado, accion_esperada, tipo_dato
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            [
-                (
-                    f["id_hecho"], f["f1_temperatura"], f["f2_presion"], f["f3_tiempo"],
-                    f["f4_materia_prima"], f["f5_ajustes_maquina"], f["regla_aplicable"],
-                    f["riesgo_esperado"], f["accion_esperada"], f["tipo_dato"],
-                )
-                for f in facts
-            ],
-        )
+        with connection.cursor() as cursor:
+            cursor.executemany(
+                "INSERT INTO reglas (id_regla, condicion, resultado, prioridad) VALUES (%s, %s, %s, %s)",
+                [
+                    (r["id_regla"], r["condicion_si"], r["accion_resultado_entonces"], int(float(r["prioridad"])))
+                    for r in rules
+                ],
+            )
+            cursor.executemany(
+                """INSERT INTO hechos (
+                    id_hecho, temperatura, presion, tiempo, materia_prima, ajustes_maquina,
+                    regla_aplicable, riesgo_esperado, accion_esperada, tipo_dato
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                [
+                    (
+                        f["id_hecho"], f["f1_temperatura"], f["f2_presion"], f["f3_tiempo"],
+                        f["f4_materia_prima"], f["f5_ajustes_maquina"], f["regla_aplicable"],
+                        f["riesgo_esperado"], f["accion_esperada"], f["tipo_dato"],
+                    )
+                    for f in facts
+                ],
+            )
         connection.execute(
             """INSERT INTO importacion (id, archivo_hechos, archivo_reglas, cantidad_hechos, cantidad_reglas)
                VALUES (1, %s, %s, %s, %s)
