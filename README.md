@@ -1,10 +1,10 @@
-﻿<div align="center">
+<div align="center">
 
 # 🏭 Control de Calidad de Defectos
 
 **Aplicación web para analizar condiciones de producción y apoyar decisiones de calidad.**
 
-[![Aplicación web](https://img.shields.io/badge/Aplicaci%C3%B3n-piai--ten.vercel.app-397c61?style=for-the-badge&logo=vercel&logoColor=white)](https://piai-ten.vercel.app)
+[![Aplicación web](https://img.shields.io/badge/Aplicaci%C3%B3n-piai--ten.vercel.app-2f68a8?style=for-the-badge&logo=vercel&logoColor=white)](https://piai-ten.vercel.app)
 [![Interfaz](https://img.shields.io/badge/Interfaz-HTML%20%7C%20CSS%20%7C%20JavaScript-526b5b?style=for-the-badge)](#tecnologías)
 [![Datos](https://img.shields.io/badge/Base%20de%20datos-Neon%20PostgreSQL-168f78?style=for-the-badge)](#arquitectura)
 
@@ -13,6 +13,12 @@
 </div>
 
 ---
+
+## 👥 Integrantes
+
+- Romina Bautista Sánchez
+- Cassandra Fabiola Alva Vallejo
+- Alan Conde Faustino
 
 ## 📌 Descripción
 
